@@ -27,31 +27,32 @@ RenderNudges.propTypes = {
 
 const Home = () => {
 
-    const nudge = [{
-        _id: ";aljdf;",
-        name: "Pani Pani Pani",
-        desc: "kjsldjfoiej",
-        state: "MH",
-        city: "NGP",
-        category: "aqi, water, etx",
-        data: [100],
-        createdBy: "DarkRaider",
-    }, {
-        _id: " :JSDF:KJ",
-        name: "AQI AMT",
-        state: "MH",
-        city: "AMT",
-        category: "",
-        data: [70],
-        createdBy: "Kaka",
-    }]
+    // const nudge = [{
+    //     _id: ";aljdf;",
+    //     name: "Pani Pani Pani",
+    //     desc: "kjsldjfoiej",
+    //     state: "MH",
+    //     city: "NGP",
+    //     category: "aqi, water, etx",
+    //     data: [100],
+    //     createdBy: "DarkRaider",
+    // }, {
+    //     _id: " :JSDF:KJ",
+    //     name: "AQI AMT",
+    //     state: "MH",
+    //     city: "AMT",
+    //     category: "",
+    //     data: [70],
+    //     createdBy: "Kaka",
+    // }]
     
     const [sockData, setSockData] = useState(null)
 
     useEffect(() => {
         
         const getData = async () => {
-            const chartData = await fetch('http://localhost:5000/nudges', {
+            // const chartData = await fetch('http://localhost:5000/nudges', {
+            const chartData = await fetch('https://7kqpyv77j6.execute-api.ap-south-1.amazonaws.com/prod/nudges', {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -68,7 +69,7 @@ const Home = () => {
     }, [])
     
 
-    const [allNudges, setAllNudges] = useState(nudge);
+    const [allNudges, setAllNudges] = useState([]);
     const [searchNudge, setSearchNudge] = useState('');
     const [loading, setLoading] = useState(false);
     const [aqi, setAqi] = useState(0);
@@ -124,7 +125,7 @@ const Home = () => {
             <div className="main-title ">
                 <h3>DASHBOARD</h3>
             </div>
-            <div className="main-cards ">
+            {/* <div className="main-cards ">
 
                 <div className="card">
                     <div className="card-inner">
@@ -153,10 +154,10 @@ const Home = () => {
                         <BsFillArchiveFill className='card_icon' />
                     </div>
                     <h1>300</h1>
-                </div>
+                </div> */}
 
 
-            </div>
+            {/* </div> */}
 
             {allNudges.length > 0 ? (
                 <div className="mt-16 justify-between">
@@ -196,12 +197,12 @@ const Home = () => {
                                 />
                             ) : (
                                 <>
-                                    <RenderNudges 
+                                    {/* <RenderNudges 
                                         data={allNudges}
                                         title="No nudges found"
-                                    />
+                                    /> */}
                                     {/* <GraphCard data={data}/> */}
-                                    <GraphCard data={testData}/>
+                                    {/* <GraphCard data={testData}/> */}
                                     {sockData?.length > 0 && sockData.map((nudge) => (
                                         <>
                                             <SockGraph key={nudge._id} sockData={nudge}/>
