@@ -12,8 +12,8 @@ const SockGraph = ({ sockData }) => {
     const [chartType, setChartType] = useState('hourly');
 
     useEffect(() => {
-        // const socket = io('http://localhost:5000', {
-        const socket = io('https://7kqpyv77j6.execute-api.ap-south-1.amazonaws.com/prod', {
+        const socket = io('http://localhost:5000', {
+        // const socket = io('https://7kqpyv77j6.execute-api.ap-south-1.amazonaws.com/prod', {
             path: '/socket/',
             // auth: {
             //     token: `${token}` // this is for pushing updated to respected user
