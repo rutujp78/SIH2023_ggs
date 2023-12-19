@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-// import { BsFillArchiveFill } from 'react-icons/bs'
+import { BsFillArchiveFill } from 'react-icons/bs'
 // import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Card, Loader, AddNudge } from './homeComponents/index';
 import PropTypes from 'prop-types'
-// import data from '../assets/staticData';
-// import testData from "../assets/testData"
-// import GraphCard from './GraphCard';
+import data from '../assets/staticData';
+import testData from "../assets/testData"
+import GraphCard from './GraphCard';
 import SockGraph from './SockGraph';
 
 const RenderNudges = ({ data, title }) => {
@@ -51,8 +51,8 @@ const Home = () => {
     useEffect(() => {
         
         const getData = async () => {
-            const chartData = await fetch('http://localhost:5000/nudges', {
-            // const chartData = await fetch('https://7kqpyv77j6.execute-api.ap-south-1.amazonaws.com/prod/nudges', {
+            // const chartData = await fetch('http://localhost:5000/nudges', {
+            const chartData = await fetch('https://7kqpyv77j6.execute-api.ap-south-1.amazonaws.com/prod/nudges', {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

@@ -66,8 +66,6 @@ const updateNudges = async () => {
                 aqi = await aqi.json();
                 aqi = aqi.data[0].aqi;
 
-                console.log(aqi, aqi^process.env.SECRET_KEY)
-
                 if(!nudge.data) nudge.data = [];
                 nudge.data.push({ labels: new Date(Date.now())  , aqi: aqi^process.env.SECRET_KEY });
                 const updatedNudge = await nudge.save();

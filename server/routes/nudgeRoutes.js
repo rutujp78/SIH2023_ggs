@@ -3,28 +3,20 @@ const NUDGES = require('../models/Nudges');
 
 const router = express.Router();
 
-router.route('/').get(async (req, res) => {    
-
-
+router.route('/').get(async (req, res) => {
+    try {
+        
         try {
-            let allNudges = await NUDGES.find({});
-
-            // after decyp
-            allNudges.forEach((element, index, array) => {
-                console.log(array[index].data);
-                array[index].data = array[index].data.map(entry => {
-                    return { labels: entry.labels, aqi: entry.aqi ^ process.env.SECRET_KEY }
-                }
-                )
-                console.log(array[index].data);
-            })
-
-            console.log(allNudges);
-
+            const allNudges = await NUDGES.find({});
+            // const allNudges = await NUDGES.find({req.body.userId});
             res.status(200).json(allNudges);
         } catch (error) {
             console.log(error);
         }
+
+    } catch (error) {
+        res.status(500).json(error);
+    }
 
 })
 
