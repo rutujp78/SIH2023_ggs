@@ -3,9 +3,10 @@ const NUDGES = require('../models/Nudges');
 
 const router = express.Router();
 
-router.route('/').get(async (req, res) => {
+router.route('/:userId').get(async (req, res) => {
     try {
-        let allNudges = await NUDGES.find({});
+        const userId = req.params.userId;
+        let allNudges = await NUDGES.find({ userId });
 
         // after decyp
         allNudges.forEach((element, index, array) => {

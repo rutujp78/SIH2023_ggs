@@ -1,15 +1,26 @@
 import React, { useEffect , useState} from 'react'
-import { Chart as ChartJS, defaults } from 'chart.js'
+import { Chart as ChartJS, defaults } from 'chart.js/auto'
 import { Line } from 'react-chartjs-2'
 import { io } from 'socket.io-client'
 import PropTypes from 'prop-types';
 
 defaults.maintainAspectRatio = false;
 defaults.responsive = true;
+// ChartJS.register(CategoryScale);
 
 const SockGraph = ({ sockData }) => {
     const [chartData, setChartData] = useState(null)
     const [chartType, setChartType] = useState('hourly');
+    // const chatOptions = {
+    //     scales: {
+    //         x: {
+
+    //         },
+    //         y: {
+
+    //         },
+    //     },
+    // };
 
     useEffect(() => {
         const socket = io('http://localhost:5000', {
@@ -56,6 +67,9 @@ const SockGraph = ({ sockData }) => {
       setFormattedData();
 
       return () => {
+        // if(chartData) {
+        //     chartData.destroy();
+        // }
         socket.disconnect();
       }
     }, [])
@@ -125,6 +139,8 @@ const SockGraph = ({ sockData }) => {
             <span>Description: {sockData.description}</span>
             <span>City: {sockData.city.charAt(0).toUpperCase() + sockData.city.slice(1)}</span>
             <span>City: {sockData.state.charAt(0).toUpperCase() + sockData.state.slice(1)}</span>
+            <span>City: {sockData.category.charAt(0).toUpperCase() + sockData.category.slice(1)}</span>
+
             <span>Graph: </span>
         </div>
 
@@ -134,7 +150,7 @@ const SockGraph = ({ sockData }) => {
                     <Line data={chartData}/>
                     <button onClick={() => handleHourlyData(sockData.data)}>Hourly</button>
                     <button onClick={() => handleDailyData(sockData)}>Daily</button>
-                    <button onClick={() => handleMontlyData(sockData)}>Montly</button>
+                    {/* <button onClick={() => handleMontlyData(sockData)}>Montly</button> */}
                 </div>
             </>
         )}
