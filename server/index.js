@@ -23,7 +23,7 @@ app.use(cors());
 const server =  http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:5173",
+        origin: "*",
         methods: ["GET", "POST", "PUT", "DELETE"]
     },
     path: '/socket/'
@@ -67,7 +67,7 @@ const updateNudges = async () => {
                 aqi = aqi.data[0].aqi;
 
                 if(!nudge.data) nudge.data = [];
-                nudge.data.push({ labels: new Date(Date.now())  , aqi: aqi });
+                nudge.data.push({ labels: new Date(Date.now())  , aqi: aqi^process.env.SECRET_KEY });
                 const updatedNudge = await nudge.save();
 
                 console.log(updatedNudge);

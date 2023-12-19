@@ -1,4 +1,4 @@
-import { BsCart3, BsGrid1X2Fill, BsPersonCircle } from 'react-icons/bs'
+// import { BsCart3, BsGrid1X2Fill, BsPersonCircle } from 'react-icons/bs'
 import PropTypes from 'prop-types';
 
 
@@ -8,7 +8,7 @@ const Sidebar = ({ sidebarToggle, openSidebar }) => {
       <div className="sidebar-title">
         <div className="sidebar-brand">
           {/* <BsCart3 className='icon_header'/>  */}
-          ME
+          SIH2023
         </div>
         <span className='icon close_icon' onClick={openSidebar}>X</span>
       </div>
@@ -16,17 +16,20 @@ const Sidebar = ({ sidebarToggle, openSidebar }) => {
       <ul className='sidebar-list'>
         <li className='sidebar-list-item'>
           <a href=''>
-            <BsGrid1X2Fill className='icon'/> Dashboard
+            {/* <BsGrid1X2Fill className='icon'/>  */}
+            Dashboard
           </a>
         </li>
         <li className='sidebar-list-item'>
           <a href=''>
-            <BsPersonCircle className='icon'/> Account
+            {/* <BsPersonCircle className='icon'/>  */}
+            Account
           </a>
         </li>
         <li className='sidebar-list-item'>
           <a href=''>
-            <BsCart3 className='icon'/> Logout
+            {/* <BsCart3 className='icon'/>  */}
+            Logout
           </a>
         </li>
       </ul>
