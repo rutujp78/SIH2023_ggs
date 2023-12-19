@@ -51,8 +51,8 @@ const Home = () => {
     useEffect(() => {
         
         const getData = async () => {
-            // const chartData = await fetch('http://localhost:5000/nudges', {
-            const chartData = await fetch('https://7kqpyv77j6.execute-api.ap-south-1.amazonaws.com/prod/nudges', {
+            const chartData = await fetch('http://localhost:5000/nudges', {
+            // const chartData = await fetch('https://7kqpyv77j6.execute-api.ap-south-1.amazonaws.com/prod/nudges', {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
