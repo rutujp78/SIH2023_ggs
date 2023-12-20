@@ -1,5 +1,6 @@
 const express = require('express');
 const NUDGES = require('../models/Nudges');
+const verifyToken = require('../middleware/auth')
 
 const router = express.Router();
 
@@ -26,7 +27,7 @@ router.route('/:userId').get(async (req, res) => {
     }
 })
 
-router.route('/').post(async (req, res) => {
+router.route('/').post(verifyToken, async (req, res) => {
     try {
         
         // const userId = req.params;
