@@ -48,7 +48,7 @@ const io = new Server(server, {
 //     })
 // })
 
-// app.use('/users', userRoutes);
+app.use('/users', userRoutes);
 app.use('/nudges', nudgeRoutes);
 
 const updateNudges = async () => {
