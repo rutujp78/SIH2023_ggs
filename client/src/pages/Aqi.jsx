@@ -66,7 +66,7 @@
 
                             {sockData?.length > 0 && sockData.map((nudge) => (
                                 <>
-                                    <SockGraph key={nudge._id} chartId={nudge._id} sockData={nudge} />
+                                    <SockGraph key={nudge._id} chartId={nudge._id} sockData={nudge} category='Aqi'/>
                                 </>
                             ))}
 

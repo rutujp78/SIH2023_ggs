@@ -1,5 +1,6 @@
 // import { BsCart3, BsGrid1X2Fill, BsPersonCircle } from 'react-icons/bs'
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 
 const Sidebar = ({ sidebarToggle, openSidebar }) => {
@@ -15,10 +16,10 @@ const Sidebar = ({ sidebarToggle, openSidebar }) => {
 
       <ul className='sidebar-list'>
         <li className='sidebar-list-item'>
-          <a href=''>
+          <Link to='/'>
             {/* <BsGrid1X2Fill className='icon'/>  */}
             Dashboard
-          </a>
+          </Link>
         </li>
         <li className='sidebar-list-item'>
           <a href=''>
