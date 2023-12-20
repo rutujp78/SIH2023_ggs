@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Toaster from '../components/Toaster';
 import PropTypes from 'prop-types'
 
-function Login() {
+function Login({ myStorage }) {
     const [showlogin, setShowLogin] = useState(false);
     const [data, setData] = useState({ username: "", email: "", password: "" });
     const [loading, setLoading] = useState(false);
@@ -24,18 +24,6 @@ function Login() {
         setLoading(true);
         console.log(data);
         try {
-            // const config = {
-            //     headers: {
-            //         "Content-type": "application/json",
-            //     },
-            // };
-
-            // const response = await axios.post(
-            //     "http://localhost:5000/user/login/",
-            //     data,
-            //     config
-            // );
-
             const response = await fetch(`http://localhost:5000/users/login`, {
                 method: "POST",
                 headers: {
@@ -45,11 +33,15 @@ function Login() {
             })
 
             const resp = await response.json();
-
             console.log("Login : ", resp);
+
             setLogInStatus({ msg: "Success", key: Math.random() });
             setLoading(false);
-            localStorage.setItem("userData", JSON.stringify(resp));
+
+            const newData = JSON.stringify(resp);
+            console.log(newData);
+            // localStorage.setItem("userData", newData);
+            // myStorage.setItem();
             navigate("/home");
         } catch (error) {
             setLogInStatus({
@@ -129,7 +121,7 @@ function Login() {
                             label="Enter User Name"
                             variant="outlined"
                             color="secondary"
-                            name="name"
+                            name="username"
                             onKeyDown={(event) => {
                                 if (event.code == "Enter") {
                                     // console.log(event);
@@ -185,7 +177,7 @@ function Login() {
                             label="Enter User Name"
                             variant="outlined"
                             color="secondary"
-                            name="name"
+                            name="username"
                             helperText=""
                             onKeyDown={(event) => {
                                 if (event.code == "Enter") {
@@ -252,3 +244,20 @@ function Login() {
 }
 
 export default Login;
+
+Login.propTypes = {
+    myStorage: PropTypes.any.isRequired,
+}
+
+// const data = [
+//     {
+//         name: "hehe",
+//         desc: "skj;a",
+//         city: "kjsdl",
+//         state: "kjsd",
+//         data: [
+//             { labels: '12/12/2020', value: 69 },
+//             { labels: '13/12/2020', value: 69 },
+//         ]
+//     }
+// ]
