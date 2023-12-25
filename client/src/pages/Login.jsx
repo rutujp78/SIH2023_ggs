@@ -6,13 +6,13 @@ import { useNavigate } from "react-router-dom";
 import Toaster from '../components/Toaster';
 import PropTypes from 'prop-types'
 
-function Login({ myStorage }) {
+function Login() {
     const [showlogin, setShowLogin] = useState(false);
     const [data, setData] = useState({ username: "", email: "", password: "" });
     const [loading, setLoading] = useState(false);
 
     const [logInStatus, setLogInStatus] = React.useState("");
-    const [signInStatus, setSignInStatus] = React.useState("");
+    const [signInStatus, setSignInStatus] = React.useState();
 
     const navigate = useNavigate();
 
@@ -110,7 +110,7 @@ function Login({ myStorage }) {
             </Backdrop>
             <div className="login-container">
                 <div className="image-container">
-                    {/* <img src={logo} alt="Logo" className="welcome-logo" /> */}
+                    <img src="" alt="Logo" className="welcome-logo" />
                 </div>
                 {showlogin && (
                     <div className="login-box">
@@ -235,7 +235,8 @@ function Login({ myStorage }) {
                         </p>
                         {signInStatus ? (
                             <Toaster key={signInStatus.key} message={signInStatus.msg} />
-                        ) : null}
+                        ) : null
+                        }
                     </div>
                 )}
             </div>

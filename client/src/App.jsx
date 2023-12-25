@@ -36,7 +36,7 @@ function App() {
           {userData ?
               <Route exact path='/' element={<Home />}/> 
             :
-            <Route exact path='/' element={<Login myStorage={myStorage}/>} /> 
+            <Route exact path='/' element={<Login/>} /> 
           }
           <Route exact path='/home' element={<Home />}/>
           <Route exact path='/energy' element={<Energy />} />
