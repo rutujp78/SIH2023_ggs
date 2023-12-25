@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import SockGraph from '../components/SockGraph'
+import staticData from '../staticData/productionPlastic'
 
 const Plastic = () => {
     const [sockData, setSockData] = useState(null)
@@ -9,17 +10,18 @@ const Plastic = () => {
     useEffect(() => {
 
         const getData = async () => {
-            const chartData = await fetch(`http://localhost:5000/nudges/${userId}`, {
-                // const chartData = await fetch('https://7kqpyv77j6.execute-api.ap-south-1.amazonaws.com/prod/nudges', {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                }
-            });
+            // const chartData = await fetch(`http://localhost:5000/nudges/${userId}`, {
+            //     // const chartData = await fetch('https://7kqpyv77j6.execute-api.ap-south-1.amazonaws.com/prod/nudges', {
+            //     method: "GET",
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //     }
+            // });
 
-            const processedChartData = await chartData.json();
-            setSockData(processedChartData);
-            console.log(sockData)
+            // const processedChartData = await chartData.json();
+            // setSockData(processedChartData);
+            // console.log(sockData)
+            setSockData(staticData)
         }
 
         getData();

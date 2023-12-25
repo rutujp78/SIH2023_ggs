@@ -1,4 +1,3 @@
-// import { BsCart3, BsGrid1X2Fill, BsPersonCircle } from 'react-icons/bs'
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 

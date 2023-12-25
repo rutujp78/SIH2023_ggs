@@ -1,4 +1,4 @@
-import React, { useEffect , useState} from 'react'
+import { useEffect , useState} from 'react'
 import { Chart as ChartJS, defaults } from 'chart.js/auto'
 import { Line } from 'react-chartjs-2'
 import { io } from 'socket.io-client'
@@ -6,21 +6,12 @@ import PropTypes from 'prop-types';
 
 defaults.maintainAspectRatio = false;
 defaults.responsive = true;
-// ChartJS.register(CategoryScale);
 
 const SockGraph = ({ sockData, category }) => {
     const [chartData, setChartData] = useState(null)
     const [chartType, setChartType] = useState('hourly');
-    // const chatOptions = {
-    //     scales: {
-    //         x: {
+    const [success, setSuccess] = useState(null);
 
-    //         },
-    //         y: {
-
-    //         },
-    //     },
-    // };
 
     useEffect(() => {
         const socket = io('http://localhost:5000', {
@@ -34,26 +25,25 @@ const SockGraph = ({ sockData, category }) => {
         socket.on('nudgeUpdated', (serverData) => {
 
             const groupedData = (serverData.data).map(info => {
-                return { label: info.labels , aqi: info.aqi }
+                return { label: info.label , value: serverData.data.category === 'aqi' ? info.aqi : info.value }
             })
 
             if(chartType === 'hourly') handleHourlyData(groupedData);
             else if(chartType === 'daily') handleDailyData(serverData);
-            // else if(chartData === 'monthly') handleMontlyData(groupedData);
         })
 
       socket.on('error', error => console.log(error));
     
       const setFormattedData = () => {
             const groupedData = sockData.data.map(info => {
-                return { label: info.labels , aqi: info.aqi }
+                return { label: info.label , value: info.value }
             })
             const chartData = {
                 labels: groupedData.length >= 12 ? groupedData.map(entry => new Date(entry.label).toLocaleString()).slice(-12) : groupedData.map(entry => new Date(entry.label).toLocaleString()),
                 datasets: [
                     {
                         label: `${category}`,
-                        data: groupedData.length >= 12 ? groupedData.map(entry => entry.aqi).slice(-12) : groupedData.map(entry => entry.aqi),
+                        data: groupedData.length >= 12 ? groupedData.map(entry => entry.value).slice(-12) : groupedData.map(entry => entry.value),
                         borderColor: 'rgba(75, 192, 192, 1)',
                         backgroundColor: "064FF0",
                         borderWidth: 2,
@@ -63,6 +53,9 @@ const SockGraph = ({ sockData, category }) => {
             }
             setChartData(chartData);
             setChartType('hourly');
+
+            // logic for success
+            setSuccess(30);
       }
       setFormattedData();
 
@@ -77,11 +70,11 @@ const SockGraph = ({ sockData, category }) => {
     const handleHourlyData = (groupedData) => {
 
         const chartData = {
-            labels: groupedData.length >= 12 ? groupedData.map(entry => new Date(entry.labels).toLocaleString()).slice(-12) : groupedData.map(entry => new Date(entry.label).toLocaleString()),
+            labels: groupedData.length >= 12 ? groupedData.map(entry => new Date(entry.label).toLocaleString()).slice(-12) : groupedData.map(entry => new Date(entry.label).toLocaleString()),
             datasets: [
                 {
                     label: `${category}`,
-                    data: groupedData.length >= 12 ? groupedData.map(entry => entry.aqi).slice(-12) : groupedData.map(entry => entry.aqi),
+                    data: groupedData.length >= 12 ? groupedData.map(entry => entry.value).slice(-12) : groupedData.map(entry => entry.value),
                     borderColor: 'rgba(75, 192, 192, 1)',
                     backgroundColor: "064FF0",
                     borderWidth: 2,
@@ -98,20 +91,20 @@ const SockGraph = ({ sockData, category }) => {
         setChartType('daily');
         console.log(groupedData);
 
-        const labels = groupedData.data.map(entry => new Date(entry.labels).toLocaleDateString());
-        const aqiValues = groupedData.data.map(entry => entry.aqi);
+        const labels = groupedData.data.map(entry => new Date(entry.label).toLocaleDateString());
+        const values = groupedData.data.map(entry => entry.value);
 
         const newGroupedData = labels.reduce((acc, label, index) =>{
             const day = label;
             acc[day] = acc[day] || { sum: 0, count: 0 };
-            acc[day].sum += aqiValues[index];
+            acc[day].sum += values[index];
             acc[day].count += 1;
             return acc;
         }, {});
 
         const averagedData = Object.keys(newGroupedData).map(day => {
-            const averageAqi = Math.round(newGroupedData[day].sum /newGroupedData[day].count);
-            return { day, averageAqi };
+            const value = Math.round(newGroupedData[day].sum /newGroupedData[day].count);
+            return { day, value };
         })
 
         const chartData = {
@@ -119,7 +112,7 @@ const SockGraph = ({ sockData, category }) => {
             datasets: [
                 {
                     label: `${category}`,
-                    data: averagedData.map(entry => entry.averageAqi),
+                    data: averagedData.map(entry => entry.value),
                     borderColor: 'rgba(75, 192, 192, 1)',
                     backgroundColor: "064FF0",
                     borderWidth: 2,
@@ -150,7 +143,7 @@ const SockGraph = ({ sockData, category }) => {
                     <Line data={chartData}/>
                     <button onClick={() => handleHourlyData(sockData.data)}>Hourly</button>
                     <button onClick={() => handleDailyData(sockData)}>Daily</button>
-                    {/* <button onClick={() => handleMontlyData(sockData)}>Montly</button> */}
+                    <span>Success: {success}%</span>
                 </div>
             </>
         )}

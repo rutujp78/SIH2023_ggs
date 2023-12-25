@@ -1,8 +1,9 @@
-const data = [
+const staticData = [
   {
-    userId: ""
+    userId: "6581a78cf0344a00e5602d07",
     name: "say no to single use plastic",
-    desc: "production of plastics in tones",
+    description: "production of plastics in tones",
+    category: "plastic",
     city: "Mumbai",
     state: "MH",
     data: [
@@ -129,3 +130,5 @@ const data = [
     ]
   }
 ]
+
+export default staticData;

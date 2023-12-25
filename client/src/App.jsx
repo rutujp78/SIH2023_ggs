@@ -5,7 +5,6 @@ import Home from './pages/Home'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import { BrowserRouter, Route, Link, Routes } from 'react-router-dom'
-import Aqi from './pages/Aqi'
 import Energy from './pages/Energy'
 import Plastic from './pages/Plastic'
 import Health from './pages/Health'
@@ -27,7 +26,7 @@ function App() {
     <BrowserRouter>
       <div className="grid-container">
         {userData && (
-            <>
+            <> 
               <Navbar openSidebar={openSidebar}/>
               <Sidebar sidebarToggle={sidebarToggle} openSidebar={openSidebar} setUserData={setUserData}/>
             </>
@@ -35,15 +34,10 @@ function App() {
         <Routes>
 
           {userData ?
-            <>
               <Route exact path='/' element={<Home />}/> 
-            </>
             :
-            <Route exact path='/' element={<Login myStorage={myStorage}/>} />   
+            <Route exact path='/' element={<Login myStorage={myStorage}/>} /> 
           }
-          
-          {/* <Navbar openSidebar={openSidebar}/>
-          <Sidebar sidebarToggle={sidebarToggle} openSidebar={openSidebar}/> */}
           <Route exact path='/home' element={<Home />}/>
           <Route exact path='/energy' element={<Energy />} />
           <Route exact path='/plastic' element={<Plastic />} />
@@ -51,7 +45,6 @@ function App() {
           <Route exact path='/ewaste' element={<Ewaste />} />
 
         </Routes>
-        {/* <Home /> */}
 
     </div>
     </BrowserRouter>
