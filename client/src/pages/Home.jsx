@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Card, Loader, AddNudge } from '../components/homeComponents/index';
+// import { Card, Loader, AddNudge } from '../components/homeComponents/index';
 import PropTypes from 'prop-types';
 import SockGraph from '../components/SockGraph';
 import { createBrowserRouter, RouterProvider, Routes, Route, Link } from 'react-router-dom';

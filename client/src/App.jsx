@@ -24,7 +24,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="grid-container">
+      <div className="App">
         {userData && (
             <> 
               <Navbar openSidebar={openSidebar}/>
