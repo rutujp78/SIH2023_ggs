@@ -28,7 +28,7 @@ function App() {
       <div className="App">
         {(username && token) && (
             <> 
-              <Navbar openSidebar={openSidebar}/>
+              <Navbar openSidebar={openSidebar} username={username}/>
               <Sidebar sidebarToggle={sidebarToggle} openSidebar={openSidebar} setUsername={setUsername} setToken={setToken} />
             </>
         )}

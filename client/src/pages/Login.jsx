@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import './Login.css';
 import { Backdrop, Button, CircularProgress, TextField } from "@mui/material";
+import sihLogo from '../assets/sih_logo.png';
 import { useNavigate } from "react-router-dom";
 import Toaster from '../components/Toaster';
 import PropTypes from 'prop-types'
@@ -119,7 +120,7 @@ function Login({ setUsername, setToken }) {
             </Backdrop>
             <div className="login-container">
                 <div className="image-container">
-                    <img src="" alt="Logo" className="welcome-logo" />
+                    <img src={sihLogo} alt="Logo" className="welcome-logo" />
                 </div>
                 {showlogin && (
                     <div className="login-box">
@@ -248,7 +249,7 @@ function Login({ setUsername, setToken }) {
     );
 }
 
-Login.PropTypes = {
+Login.propTypes = {
     setUsername: PropTypes.func.isRequired,
     setToken: PropTypes.func.isRequired,
 }
