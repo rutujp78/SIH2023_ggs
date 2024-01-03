@@ -41,7 +41,7 @@ body {
 
 .grid-container {
     display: grid;
-    grid-template-columns: 260px 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 0.2fr 3fr;
     grid-template-areas:
         'sidebar header header header'
@@ -68,7 +68,7 @@ body {
 #sidebar {
     grid-area: sidebar;
     width: 13rem;
-    position: absolute;
+    position: fixed;
     left: 0;
     height: 100%;
     background-color: #263043;
@@ -180,8 +180,8 @@ body {
   margin: 10px;
   display: grid;
   /* justify-content: space-between; */
-  grid-template-rows: 400px 1fr;
-  grid-template-columns: 0.2fr 3fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 25px;
 }
 
