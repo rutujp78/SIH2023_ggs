@@ -31,7 +31,7 @@ const Energy = () => {
     const [addNudge, setAddNudge] = useState(false)
 
     return (
-        <main className='main-container '>
+        <main className='energy-container '>
             <div className="main-title ">
                 <h3>Energy</h3>
             </div>
