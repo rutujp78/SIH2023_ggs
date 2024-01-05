@@ -5,7 +5,6 @@ import staticData from '../staticData/productionPlastic'
 
 const Plastic = () => {
     const [sockData, setSockData] = useState(null)
-    const [userId, setUserId] = useState("6581a78cf0344a00e5602d07");
 
     useEffect(() => {
 
@@ -34,22 +33,22 @@ const Plastic = () => {
     const [addNudge, setAddNudge] = useState(false)
 
     return (
-        <main className='main-container '>
+        <div className='nudge-container '>
             <div className="main-title ">
                 <h3>Plastic</h3>
             </div>
 
             {allNudges.length > 0 ? (
-                <div className="mt-16 justify-between">
+                <div className="search-nudge">
                     <input type="text" placeholder='Search Nudge' className='mt-5' />
-                    <button className='mt-16' onClick={() => setAddNudge(true)}>Add Nudge</button>
+                    <button className='add-nudge-button' onClick={() => setAddNudge(true)}>Add Nudge</button>
 
                 </div>
             )
 
                 : (
-                    <div className="mt-16">
-                        <button className='cursor-pointer bg-[#6A0DAD]' onClick={() => setAddNudge(true)}>Add Nudge</button>
+                    <div className="search-nudge">
+                        <button className='add-nudge-button' onClick={() => setAddNudge(true)}>Add Nudge</button>
                     </div>
                 )}
 
@@ -58,7 +57,7 @@ const Plastic = () => {
                 <></>
             )}
 
-            <div className='mt-10'>
+            <div className='graph-container'>
                 {loading ? (
                     <div className="flex justify-center items-center">
                         {/* <Loader /> */}
@@ -75,7 +74,7 @@ const Plastic = () => {
                     </>
                 )}
             </div>
-        </main>
+        </div>
     )
 }
 

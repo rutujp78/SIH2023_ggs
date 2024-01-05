@@ -32,7 +32,7 @@ const Health = () => {
     const [addNudge, setAddNudge] = useState(false)
 
     return (
-        <main className='main-container '>
+        <main className='nudge-container '>
             <div className="main-title ">
                 <h3>Healthy lifestyles</h3>
             </div>

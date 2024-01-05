@@ -1,0 +1,17 @@
+.nudge-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 13rem;
+    top: 50px;
+    padding: 10px;
+    width: 75%;
+}
+
+@media (max-width: 992px) {
+    .nudge-container {
+        position: static;
+        width: 80%;
+        /* left: 0; */
+    }
+}

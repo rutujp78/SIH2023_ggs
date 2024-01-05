@@ -131,7 +131,7 @@ const SockGraph = ({ sockData, category }) => {
             <span>Name: {sockData.name}</span>
             <span>Description: {sockData.description}</span>
             <span>City: {sockData.city.charAt(0).toUpperCase() + sockData.city.slice(1)}</span>
-            <span>City: {sockData.state.charAt(0).toUpperCase() + sockData.state.slice(1)}</span>
+            <span>State: {sockData.state.charAt(0).toUpperCase() + sockData.state.slice(1)}</span>
             <span>Category: {category}</span>
 
             <span>Graph: </span>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import SockGraph from '../components/SockGraph'
+import './Parameter.css'
 
 const Energy = () => {
     const [sockData, setSockData] = useState(null)
@@ -31,7 +32,7 @@ const Energy = () => {
     const [addNudge, setAddNudge] = useState(false)
 
     return (
-        <main className='energy-container '>
+        <main className='nudge-container '>
             <div className="main-title ">
                 <h3>Energy</h3>
             </div>
