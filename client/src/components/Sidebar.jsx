@@ -1,13 +1,19 @@
-// import { BsCart3, BsGrid1X2Fill, BsPersonCircle } from 'react-icons/bs'
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
-const Sidebar = ({ sidebarToggle, openSidebar, setUserData }) => {
+const Sidebar = ({ sidebarToggle, openSidebar, setUsername, setToken, setUserId }) => {
+  const naviagte = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("userData")
-    setUserData(null);
+    localStorage.removeItem("username")
+    localStorage.removeItem('token')
+    localStorage.removeItem('userId')
+    setUsername(null);
+    setToken(null);
+    setUserId(null);
+
+    naviagte("/login");
   }
 
   return (
@@ -48,7 +54,9 @@ const Sidebar = ({ sidebarToggle, openSidebar, setUserData }) => {
 Sidebar.propTypes = {
   sidebarToggle: PropTypes.any.isRequired,
   openSidebar: PropTypes.any.isRequired,
-  setUserData: PropTypes.any.isRequired,
+  setUsername: PropTypes.func.isRequired,
+  setToken: PropTypes.func.isRequired,
+  setUserId: PropTypes.any.isRequired,
 }
 
 export default Sidebar

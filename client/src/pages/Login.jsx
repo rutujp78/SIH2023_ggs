@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-// import logo from "../images/logo.png";
+import './Login.css';
 import { Backdrop, Button, CircularProgress, TextField } from "@mui/material";
-// import axios from "axios";
+import sihLogo from '../assets/sih_logo.png';
 import { useNavigate } from "react-router-dom";
 import Toaster from '../components/Toaster';
 import PropTypes from 'prop-types'
 
-function Login({ myStorage }) {
+function Login({ setUsername, setToken, setUserId }) {
     const [showlogin, setShowLogin] = useState(false);
     const [data, setData] = useState({ username: "", email: "", password: "" });
     const [loading, setLoading] = useState(false);
 
     const [logInStatus, setLogInStatus] = React.useState("");
-    const [signInStatus, setSignInStatus] = React.useState("");
+    const [signInStatus, setSignInStatus] = React.useState();
 
     const navigate = useNavigate();
 
@@ -20,9 +20,8 @@ function Login({ myStorage }) {
         setData({ ...data, [e.target.name]: e.target.value });
     };
 
-    const loginHandler = async (e) => {
+    const loginHandler = async () => {
         setLoading(true);
-        console.log(data);
         try {
             const response = await fetch(`http://localhost:5000/users/login`, {
                 method: "POST",
@@ -32,17 +31,24 @@ function Login({ myStorage }) {
                 body: JSON.stringify(data),
             })
 
+            // Error handling
+            if(response.status === 400) throw new Error("Username or password do not match");
+
             const resp = await response.json();
-            console.log("Login : ", resp);
 
             setLogInStatus({ msg: "Success", key: Math.random() });
             setLoading(false);
 
-            const newData = JSON.stringify(resp);
-            console.log(newData);
-            // localStorage.setItem("userData", newData);
-            // myStorage.setItem();
+            localStorage.setItem("username", resp.username);
+            localStorage.setItem("token", resp.token);
+            localStorage.setItem("userId", resp.userId);
+
+            setUsername(resp.username);
+            setToken(resp.token);
+            setUserId(resp.userId);
+
             navigate("/home");
+
         } catch (error) {
             setLogInStatus({
                 msg: "Invalid User name or Password",
@@ -55,19 +61,8 @@ function Login({ myStorage }) {
     const signUpHandler = async () => {
         setLoading(true);
         try {
-            // const config = {
-            //     headers: {
-            //         "Content-type": "application/json",
-            //     },
-            // };
 
-            // const response = await axios.post(
-            //     "http://localhost:5000/user/register/",
-            //     data,
-            //     config
-            // );
-
-            const response = await fetch('http://localhost:5000/users/signup', {
+            const response = await fetch('http://localhost:5000/users/register', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -75,28 +70,47 @@ function Login({ myStorage }) {
                 body: JSON.stringify(data),
             })
 
+            // Error handling stuff (Need to implement properly)
+            if(response.status === 500) throw new Error({status: response.status});
+            if(response.status === 405) throw new Error({status: response.status});
+            if(response.status === 406) throw new Error({status: response.status});
+
             const resp = await response.json();
 
-            console.log(resp);
             setSignInStatus({ msg: "Success", key: Math.random() });
-            navigate("/home");
-            localStorage.setItem("userData", JSON.stringify(resp));
+
+            localStorage.setItem("username", resp.username);
+            localStorage.setItem("token", resp.token);
+            localStorage.setItem("userId", resp.userId)
+
+            setUsername(resp.username);
+            setToken(resp.token);
+            setUserId(resp.userId);
+
             setLoading(false);
+            navigate("/home");
+
         } catch (error) {
-            console.log(error);
-            if (error.response.status === 405) {
+            console.log(error)
+            setLoading(false);
+            if (error.status === 405) {
                 setLogInStatus({
                     msg: "User with this email ID already Exists",
                     key: Math.random(),
                 });
             }
-            if (error.response.status === 406) {
+            if (error.status === 406) {
                 setLogInStatus({
                     msg: "User Name already Taken, Please take another one",
                     key: Math.random(),
                 });
             }
-            setLoading(false);
+            if (error.status === 500) {
+                setLogInStatus({
+                    msg: "Internal Server Error",
+                    key: Math.random(),
+                });
+            }
         }
     };
 
@@ -110,7 +124,7 @@ function Login({ myStorage }) {
             </Backdrop>
             <div className="login-container">
                 <div className="image-container">
-                    {/* <img src={logo} alt="Logo" className="welcome-logo" /> */}
+                    <img src={sihLogo} alt="Logo" className="welcome-logo" />
                 </div>
                 {showlogin && (
                     <div className="login-box">
@@ -124,7 +138,6 @@ function Login({ myStorage }) {
                             name="username"
                             onKeyDown={(event) => {
                                 if (event.code == "Enter") {
-                                    // console.log(event);
                                     loginHandler();
                                 }
                             }}
@@ -139,7 +152,6 @@ function Login({ myStorage }) {
                             name="password"
                             onKeyDown={(event) => {
                                 if (event.code == "Enter") {
-                                    // console.log(event);
                                     loginHandler();
                                 }
                             }}
@@ -181,7 +193,6 @@ function Login({ myStorage }) {
                             helperText=""
                             onKeyDown={(event) => {
                                 if (event.code == "Enter") {
-                                    // console.log(event);
                                     signUpHandler();
                                 }
                             }}
@@ -195,7 +206,6 @@ function Login({ myStorage }) {
                             name="email"
                             onKeyDown={(event) => {
                                 if (event.code == "Enter") {
-                                    // console.log(event);
                                     signUpHandler();
                                 }
                             }}
@@ -210,7 +220,6 @@ function Login({ myStorage }) {
                             name="password"
                             onKeyDown={(event) => {
                                 if (event.code == "Enter") {
-                                    // console.log(event);
                                     signUpHandler();
                                 }
                             }}
@@ -235,7 +244,8 @@ function Login({ myStorage }) {
                         </p>
                         {signInStatus ? (
                             <Toaster key={signInStatus.key} message={signInStatus.msg} />
-                        ) : null}
+                        ) : null
+                        }
                     </div>
                 )}
             </div>
@@ -243,21 +253,10 @@ function Login({ myStorage }) {
     );
 }
 
-export default Login;
-
 Login.propTypes = {
-    myStorage: PropTypes.any.isRequired,
+    setUsername: PropTypes.func.isRequired,
+    setToken: PropTypes.func.isRequired,
+    setUserId: PropTypes.any.isRequired,
 }
 
-// const data = [
-//     {
-//         name: "hehe",
-//         desc: "skj;a",
-//         city: "kjsdl",
-//         state: "kjsd",
-//         data: [
-//             { labels: '12/12/2020', value: 69 },
-//             { labels: '13/12/2020', value: 69 },
-//         ]
-//     }
-// ]
+export default Login;

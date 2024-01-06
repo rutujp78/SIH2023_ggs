@@ -13,7 +13,7 @@ router.route('/:userId').get(async (req, res) => {
         allNudges.forEach((element, index, array) => {
             // console.log(array[index].data);
             array[index].data = array[index].data.map(entry => {
-                return { labels: entry.labels, aqi: entry.aqi ^ process.env.SECRET_KEY }
+                return { label: entry.label, value: entry.value ^ process.env.SECRET_KEY }
             }
             )
             // console.log(array[index].data);

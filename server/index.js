@@ -67,10 +67,10 @@ const updateNudges = async () => {
                 aqi = aqi.data[0].aqi;
 
                 if(!nudge.data) nudge.data = [];
-                nudge.data.push({ labels: new Date(Date.now())  , aqi: aqi^process.env.SECRET_KEY });
+                nudge.data.push({ label: new Date(Date.now())  , value: aqi^process.env.SECRET_KEY });
                 const updatedNudge = await nudge.save();
 
-                console.log(updatedNudge);
+                // console.log(updatedNudge);
 
                 io.emit('nudgeUpdated', updatedNudge);
                 // io.to(nudge.userID).emit('nudgeUpdated', updatedNudge); // to push updates to respective user only

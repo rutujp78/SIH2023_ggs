@@ -6,7 +6,6 @@ const Schema = new mongoose.Schema({
     description: { type: String },
     city: { type: String },
     state: { type: String },
-    data: { type: String },
     category: { type: String },
     data: { type: Array } // here need to add userId field
 })
