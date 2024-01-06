@@ -49,33 +49,26 @@ The project is built using the MERN (MongoDB, Express.js, React.js, Node.js) sta
 - [Contributor 3](https://github.com/contributor3)
 -->
 
-
-
-<div class="photos" style="width: 200px; height: 200px; border-radius: 50%; overflow: hidden; display: inline-block;">
+<a href="https://github.com/abhinav-dixit-tec"> 
+  <img src="https://avatars.githubusercontent.com/u/78017517?v=4" width="50">  
+</a> 
   
-  <a href="https://github.com/rutujp78"> 
-  
-  <img src="https://avatars.githubusercontent.com/u/76244494?v=4" > 
-    
-  </a> 
-  
-  <a href="https://github.com/abhinav-dixit-tec"> 
-        <img href="https://avatars.githubusercontent.com/u/78017517?v=4"> 
-  </a> 
-  
-  <a href="https://github.com/KunalAsatkar"> 
-        <img href="https://avatars.githubusercontent.com/u/126422478?v=4"> 
-  </a> 
+<a href="https://github.com/KunalAsatkar"> 
+  <img src="https://avatars.githubusercontent.com/u/126422478?v=4" width="50"> 
+</a> 
         
-  <a href="https://github.com/MansiShirbhate"> 
-        <img href="https://avatars.githubusercontent.com/u/121678285?v=4"> 
-  </a> 
+<a href="https://github.com/MansiShirbhate"> 
+  <img src="https://avatars.githubusercontent.com/u/121678285?v=4" width="50"> 
+</a> 
   
-  <a href="https://github.com/Raje01"> 
-        <img href="https://avatars.githubusercontent.com/u/115696999?v=4"> 
-  </a> 
+<a href="https://github.com/rutujp78"> 
+  <img src="https://avatars.githubusercontent.com/u/76244494?v=4" width="50"> 
+</a> 
   
-  <a href="https://github.com/100rabh-dt"> 
-        <img href="https://avatars.githubusercontent.com/u/120584584?v=4"> 
-  </a> 
-</div>
+<a href="https://github.com/Raje01"> 
+  <img src="https://avatars.githubusercontent.com/u/115696999?v=4" width="50"> 
+</a> 
+  
+<a href="https://github.com/100rabh-dt"> 
+  <img src="https://avatars.githubusercontent.com/u/120584584?v=4" width="50"> 
+</a> 
