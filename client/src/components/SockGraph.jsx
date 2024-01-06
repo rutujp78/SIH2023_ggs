@@ -89,7 +89,7 @@ const SockGraph = ({ sockData, category }) => {
 
     const handleDailyData = (groupedData) => {
         setChartType('daily');
-        console.log(groupedData);
+        // console.log(groupedData);
 
         const labels = groupedData.data.map(entry => new Date(entry.label).toLocaleDateString());
         const values = groupedData.data.map(entry => entry.value);

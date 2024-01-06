@@ -34,7 +34,7 @@ router.post("/register", async (req,res)=>{
             userId: user._id,
         }, process.env.SECRET_KEY);
 
-        res.status(200).json({ username: user.username, token: token });
+        res.status(200).json({ userId: user._id, username: user.username, token: token });
 
     } catch (error) {
         res.status(500).json(error);
@@ -60,7 +60,7 @@ router.post("/login", async (req,res)=>{
             userId: user._id,
         }, process.env.SECRET_KEY);
         
-        res.status(200).json({ username: user.username, token: token });
+        res.status(200).json({ userId: user._id, username: user.username, token: token });
     } catch (error) {
         return res.status(500).json(error);
     }

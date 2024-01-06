@@ -16,6 +16,7 @@ function App() {
   
   const [sidebarToggle, setSidebarToggle] = useState(false);
   const [username, setUsername] = useState(myStorage.getItem("username"));
+  const [userId, setUserId] = useState(myStorage.getItem("userId"));
   const [token, setToken] = useState(myStorage.getItem("token"));
 
   const openSidebar = () => {
@@ -28,7 +29,7 @@ function App() {
         {(username && token) && (
             <> 
               <Navbar openSidebar={openSidebar} username={username}/>
-              <Sidebar sidebarToggle={sidebarToggle} openSidebar={openSidebar} setUsername={setUsername} setToken={setToken} />
+              <Sidebar sidebarToggle={sidebarToggle} openSidebar={openSidebar} setUsername={setUsername} setToken={setToken} setUserId={setUserId}/>
             </>
         )}
         <Routes>
@@ -37,16 +38,16 @@ function App() {
               <>
                 <Route exact path='/' element={<Home />}/> 
                 <Route exact path='/home' element={<Home />}/>
-                <Route exact path='/energy' element={<Energy />} />
-                <Route exact path='/plastic' element={<Plastic />} />
-                <Route exact path='/health' element={<Health />} />
-                <Route exact path='/ewaste' element={<Ewaste />} />
+                <Route exact path='/energy' element={<Energy userId={userId}/>} />
+                <Route exact path='/plastic' element={<Plastic userId={userId}/>} />
+                <Route exact path='/health' element={<Health userId={userId}/>} />
+                <Route exact path='/ewaste' element={<Ewaste userId={userId}/>} />
               </>
             :
             <>
-              <Route exact path='/' element={<Login setUsername={setUsername} setToken={setToken} />} /> 
-              <Route exact path='/login' element={<Login setUsername={setUsername} setToken={setToken} />} /> 
-              <Route exact path='/home' element={<Login setUsername={setUsername} setToken={setToken} />} /> 
+              <Route exact path='/' element={<Login setUsername={setUsername} setToken={setToken} setUserId={setUserId}/>} /> 
+              <Route exact path='/login' element={<Login setUsername={setUsername} setToken={setToken} setUserId={setUserId}/>} /> 
+              <Route exact path='/home' element={<Login setUsername={setUsername} setToken={setToken} setUserId={setUserId}/>} /> 
             </>
           }
 

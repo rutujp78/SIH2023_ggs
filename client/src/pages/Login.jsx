@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Toaster from '../components/Toaster';
 import PropTypes from 'prop-types'
 
-function Login({ setUsername, setToken }) {
+function Login({ setUsername, setToken, setUserId }) {
     const [showlogin, setShowLogin] = useState(false);
     const [data, setData] = useState({ username: "", email: "", password: "" });
     const [loading, setLoading] = useState(false);
@@ -41,9 +41,11 @@ function Login({ setUsername, setToken }) {
 
             localStorage.setItem("username", resp.username);
             localStorage.setItem("token", resp.token);
+            localStorage.setItem("userId", resp.userId);
 
             setUsername(resp.username);
             setToken(resp.token);
+            setUserId(resp.userId);
 
             navigate("/home");
 
@@ -79,9 +81,11 @@ function Login({ setUsername, setToken }) {
 
             localStorage.setItem("username", resp.username);
             localStorage.setItem("token", resp.token);
+            localStorage.setItem("userId", resp.userId)
 
             setUsername(resp.username);
             setToken(resp.token);
+            setUserId(resp.userId);
 
             setLoading(false);
             navigate("/home");
@@ -252,6 +256,7 @@ function Login({ setUsername, setToken }) {
 Login.propTypes = {
     setUsername: PropTypes.func.isRequired,
     setToken: PropTypes.func.isRequired,
+    setUserId: PropTypes.any.isRequired,
 }
 
 export default Login;

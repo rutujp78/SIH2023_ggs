@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import SockGraph from '../components/SockGraph'
-import './Parameter.css'
+import SockGraph from '../components/SockGraph';
+import './Parameter.css';
+import PropTypes from 'prop-types';
 
-const Energy = () => {
+const Energy = ({ userId }) => {
     const [sockData, setSockData] = useState(null)
-    const [userId, setUserId] = useState("6581a78cf0344a00e5602d07");
 
     useEffect(() => {
 
@@ -19,7 +19,7 @@ const Energy = () => {
 
             const processedChartData = await chartData.json();
             setSockData(processedChartData);
-            console.log(sockData)
+            // console.log(sockData)
         }
 
         getData();
@@ -76,6 +76,10 @@ const Energy = () => {
             </div>
         </main>
     )
+}
+
+Energy.propTypes = {
+    userId: PropTypes.any.isRequired,
 }
 
 export default Energy

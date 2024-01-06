@@ -2,14 +2,16 @@ import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
 
 
-const Sidebar = ({ sidebarToggle, openSidebar, setUsername, setToken }) => {
+const Sidebar = ({ sidebarToggle, openSidebar, setUsername, setToken, setUserId }) => {
   const naviagte = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("username")
     localStorage.removeItem('token')
+    localStorage.removeItem('userId')
     setUsername(null);
     setToken(null);
+    setUserId(null);
 
     naviagte("/login");
   }
@@ -54,6 +56,7 @@ Sidebar.propTypes = {
   openSidebar: PropTypes.any.isRequired,
   setUsername: PropTypes.func.isRequired,
   setToken: PropTypes.func.isRequired,
+  setUserId: PropTypes.any.isRequired,
 }
 
 export default Sidebar

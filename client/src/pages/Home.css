@@ -11,6 +11,7 @@
 .home-grid-container {
 
     display: grid;
+    color: black;
     /* justify-content: space-between; */
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr;

@@ -8,7 +8,8 @@ body {
   margin: 0;
   padding: 0;
   background-color: #1d2634;
-  color: #9e9ea4;
+  /* color: #9e9ea4; */
+  color: #ffffff;
   font-family: 'Montserrat', sans-serif;
   /* display: flex; */
 }
@@ -33,7 +34,8 @@ body {
 }
 
 .close_icon {
-  color: #9e9ea4;
+  /* color: #9e9ea4; */
+  color: #ffffff;
   margin-left: 30px;
   margin-top: 10px;
   cursor: pointer;
@@ -102,7 +104,8 @@ body {
 
 .sidebar-list-item>a {
   text-decoration: none;
-  color: #9e9ea4;
+  /* color: #9e9ea4; */
+  color: #ffffff;
 }
 
 .sidebar-responsive {
