@@ -56,7 +56,7 @@ const updateNudges = async () => {
         const nudges = await NUDGES.find({});
         nudges.forEach(async (nudge) => {
             if (nudge.category === 'aqi') {
-                let aqi = await fetch(`https://api.weatherbit.io/v2.0/current/airquality?city=${nudge.city}&state=${nudge.state}&country=india&key=eb585492b19b430aac151fc3d235f885`, {
+            let aqi = await fetch(`https://api.weatherbit.io/v2.0/current/airquality?city=${nudge.city}&state=${nudge.state}&country=india&key=${process.env.API_KEY}`, {
                     method: 'GET',
                     headers: {
                         "Content-Type": "application/json"
