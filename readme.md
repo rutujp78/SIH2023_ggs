@@ -42,6 +42,12 @@ The project is built using the MERN (MongoDB, Express.js, React.js, Node.js) sta
 
 <img src="https://github.com/rutujp78/SIH2023_ggs/assets/76244494/e0b0f8e9-3906-4f57-87c3-62584da6a52a" alt="Parameter Monitoring Page" width="720" />
 
+## LiFE Activities
+<img src="https://github.com/rutujp78/SIH2023_ggs/assets/76244494/b92de45b-3d1d-4d8a-964c-1c07967774f6" alt="Parameter Monitoring Page" width="360" />
+
+## Architecture
+<img src="https://github.com/rutujp78/SIH2023_ggs/assets/76244494/1c8354a3-66c7-40b7-b0ba-9c0a2ed3676a" alt="Parameter Monitoring Page" width="480" />
+
 ## Contributors
 
 <!--- [Contributor 1](https://github.com/rutujp78)
@@ -61,12 +67,12 @@ The project is built using the MERN (MongoDB, Express.js, React.js, Node.js) sta
   <img src="https://avatars.githubusercontent.com/u/121678285?v=4" width="50"> 
 </a> 
   
-<a href="https://github.com/rutujp78"> 
-  <img src="https://avatars.githubusercontent.com/u/76244494?v=4" width="50"> 
-</a> 
-  
 <a href="https://github.com/Raje01"> 
   <img src="https://avatars.githubusercontent.com/u/115696999?v=4" width="50"> 
+</a> 
+  
+<a href="https://github.com/rutujp78"> 
+  <img src="https://avatars.githubusercontent.com/u/76244494?v=4" width="50"> 
 </a> 
   
 <a href="https://github.com/100rabh-dt"> 
