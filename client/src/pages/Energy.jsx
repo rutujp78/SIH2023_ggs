@@ -2,27 +2,21 @@ import { useState, useEffect } from 'react';
 import SockGraph from '../components/SockGraph';
 import './Parameter.css';
 import PropTypes from 'prop-types';
+import nudgeService from '../services/nudgeService';
+import AddNudge from '../components/AddNudge';
 
 const Energy = ({ userId }) => {
     const [sockData, setSockData] = useState(null)
 
     useEffect(() => {
 
-        const getData = async () => {
-            const chartData = await fetch(`http://localhost:5000/nudges/${userId}`, {
-                // const chartData = await fetch('https://7kqpyv77j6.execute-api.ap-south-1.amazonaws.com/prod/nudges', {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                }
-            });
-
-            const processedChartData = await chartData.json();
-            setSockData(processedChartData);
+        const getUserEnergyNudges = async () => {
+            const nudges = nudgeService.getNudges(userId, 'energy');
+            setSockData(nudges);
             // console.log(sockData)
         }
 
-        getData();
+        getUserEnergyNudges();
 
     }, [])
 
@@ -53,7 +47,7 @@ const Energy = ({ userId }) => {
 
             {addNudge && (
                 // <AddNudge setAddNudge={setAddNudge}/>
-                <></>
+                <AddNudge userId={userId} category={"energy"} setAddNudge={setAddNudge} />
             )}
 
             <div className='mt-10'>
@@ -67,7 +61,7 @@ const Energy = ({ userId }) => {
                         {sockData?.length > 0 && sockData.map((nudge) => (
                             <>
                                 <SockGraph key={nudge._id} chartId={nudge._id} sockData={nudge} category="Energy (Giga Watt Hour)"/>
-                                <SockGraph key={nudge._id} chartId={nudge._id} sockData={nudge} category="Energy (Giga Watt Hour)"/>
+                                {/* <SockGraph key={nudge._id} chartId={nudge._id} sockData={nudge} category="Energy (Giga Watt Hour)"/> */}
                             </>
                         ))}
 
