@@ -79,7 +79,7 @@ const getNudge = async (req, res) => {
             // console.log(array[index].data);
         });
 
-        console.log(allNudges);
+        // console.log(allNudges);
         res.status(200).json(allNudges);
     } catch (error) {
         console.log(error);

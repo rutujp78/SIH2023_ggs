@@ -6,7 +6,7 @@ const nudgeService = {
             const response = await axios.get(`http://localhost:5000/nudges/${userId}`, {
                 params: { category },
             })
-            const userNudges = await response.data;
+            const userNudges = response.data;
         
             return userNudges;
         } catch (error) {

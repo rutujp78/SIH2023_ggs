@@ -1,5 +1,6 @@
 const staticData = [
   {
+    _id: "jj;laksjf",
     userId: "6581a78cf0344a00e5602d07",
     name: "say no to single use plastic",
     description: "production of plastics in tones",

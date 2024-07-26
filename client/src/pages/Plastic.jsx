@@ -1,81 +1,50 @@
-import React from 'react'
 import { useState, useEffect } from 'react';
-import SockGraph from '../components/SockGraph'
-import staticData from '../staticData/productionPlastic'
+import SockGraph from '../components/SockGraph';
+import staticData from '../staticData/productionPlastic';
+import PropTypes from 'prop-types';
+import nudgeService from '../services/nudgeService';
+import AddNudge from '../components/AddNudge';
+import './Parameter.css';
 
-const Plastic = () => {
+const Plastic = ({ userId }) => {
     const [sockData, setSockData] = useState(null)
-
-    useEffect(() => {
-
-        const getData = async () => {
-            // const chartData = await fetch(`http://localhost:5000/nudges/${userId}`, {
-            //     // const chartData = await fetch('https://7kqpyv77j6.execute-api.ap-south-1.amazonaws.com/prod/nudges', {
-            //     method: "GET",
-            //     headers: {
-            //         "Content-Type": "application/json",
-            //     }
-            // });
-
-            // const processedChartData = await chartData.json();
-            // setSockData(processedChartData);
-            // console.log(sockData)
-            setSockData(staticData)
-        }
-
-        getData();
-
-    }, [])
-
-    const [allNudges, setAllNudges] = useState([]);
-    const [searchNudge, setSearchNudge] = useState('');
-    const [loading, setLoading] = useState(false);
     const [addNudge, setAddNudge] = useState(false)
 
+    useEffect(() => {
+        const getUserEnergyNudges = async () => {
+            const nudges = await nudgeService.getNudges(userId, 'plastic');
+            // console.log(nudges);
+            // setSockData(nudges);
+            // since we have dummy data ;)
+            setSockData(staticData);
+        }
+        getUserEnergyNudges();
+    }, []);
+
     return (
-        <div className='nudge-container '>
+        <main className='nudge-container '>
             <div className="main-title ">
                 <h3>Plastic</h3>
             </div>
 
-            {allNudges.length > 0 ? (
-                <div className="search-nudge">
-                    <input type="text" placeholder='Search Nudge' className='mt-5' />
-                    <button className='add-nudge-button' onClick={() => setAddNudge(true)}>Add Nudge</button>
-
-                </div>
-            )
-
-                : (
-                    <div className="search-nudge">
-                        <button className='add-nudge-button' onClick={() => setAddNudge(true)}>Add Nudge</button>
-                    </div>
-                )}
-
+            <div className="mt-16">
+                <button className='cursor-pointer bg-[#6A0DAD]' onClick={() => setAddNudge(true)}>Add Nudge</button>
+            </div>
             {addNudge && (
-                // <AddNudge setAddNudge={setAddNudge}/>
-                <></>
+                <AddNudge userId={userId} category={"energy"} setAddNudge={setAddNudge} />
             )}
 
-            <div className='graph-container'>
-                {loading ? (
-                    <div className="flex justify-center items-center">
-                        {/* <Loader /> */}
-                    </div>
-                ) : (
-                    <>
-
-                        {sockData?.length > 0 && sockData.map((nudge) => (
-                            <>
-                                <SockGraph key={nudge._id} chartId={nudge._id} sockData={nudge} category="Plastic"/>
-                            </>
-                        ))}
-
-                    </>
-                )}
+            <div className='mt-10'>
+                {sockData?.length > 0 && sockData.map((nudge) => (
+                    <SockGraph key={nudge._id} chartId={nudge._id} sockData={nudge} category="Plastic production" />
+                ))}
             </div>
-        </div>
-    )
+        </main>
+    );
 }
 
-export default Plastic
+Plastic.propTypes = {
+    userId: PropTypes.string.isRequired,
+}
+
+export default Plastic;
